@@ -22,4 +22,7 @@ public class User {
     //手机号码
     private String mb;
 
+    //时间
+    private String time;
+
 }

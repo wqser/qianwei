@@ -36,9 +36,12 @@ public class UserController {
     }
 
 
-    @PostMapping
+    @PostMapping(
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE
+    )
     @ResponseStatus(HttpStatus.CREATED)
-    public User save(@RequestParam(value = "name") String name,@RequestParam (value="mb")String mb ){
+    public User  save(@RequestParam(value = "name") String name,@RequestParam(value="mb")String mb){
         return service.save(name,mb);
     }
 }
