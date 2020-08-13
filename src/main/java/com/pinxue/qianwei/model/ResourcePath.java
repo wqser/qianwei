@@ -8,24 +8,22 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "resource_path")
+public class ResourcePath {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //id
     private Long id;
 
-    //名字
-    private String name;
+    //起始时间
+    private Long startTime;
 
-    //手机号码
-    private String mb;
+    //终止时间
+    private Long endTime;
 
-    //时间
-    private String time;
+    //资源路径
+    private String path;
 
-    //卡路里
-    private int calorie;
 
 }

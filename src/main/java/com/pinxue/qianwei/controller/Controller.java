@@ -1,6 +1,8 @@
 package com.pinxue.qianwei.controller;
 
+import com.pinxue.qianwei.model.ResourcePath;
 import com.pinxue.qianwei.model.User;
+import com.pinxue.qianwei.service.ResourcePathService;
 import com.pinxue.qianwei.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -16,17 +18,21 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/qianwei")
-public class UserController {
+public class Controller {
 
 
     @Autowired
-    private UserService service;
+    private UserService userService;
+
+    @Autowired
+    private ResourcePathService resourcePathService;
 
     /**
-     * 测试借口
+     * 测试接口
      * @return
      */
     @GetMapping(
+            value = "/test",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     @ResponseStatus(HttpStatus.OK)
@@ -35,13 +41,32 @@ public class UserController {
         return  "SUCCESS";
     }
 
-
+    /**
+     * 提交功能
+     * @param name
+     * @param mb
+     * @return
+     */
     @PostMapping(
+            value = "/register",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
     @ResponseStatus(HttpStatus.CREATED)
-    public User  save(@RequestParam(value = "name") String name,@RequestParam(value="mb")String mb){
-        return service.save(name,mb);
+    public User  save(@RequestParam(value = "name") String name,@RequestParam(value="mb")String mb,@RequestParam(value="calorie")int calorie){
+        return userService.save(name,mb,calorie);
+    }
+
+    /**
+     * 测试接口
+     * @return
+     */
+    @GetMapping(
+            value = "/getPath",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    @ResponseStatus(HttpStatus.OK)
+    public String getPath(){
+        return resourcePathService.getPathByTime();
     }
 }
