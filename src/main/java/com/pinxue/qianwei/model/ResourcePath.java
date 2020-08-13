@@ -23,7 +23,13 @@ public class ResourcePath {
     private Long endTime;
 
     //资源路径
-    private String path;
+    private String imgSrc;
+
+    private String p1;
+
+    private String p2;
+
+    private String p3;
 
 
 }

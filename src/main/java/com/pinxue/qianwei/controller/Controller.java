@@ -4,6 +4,8 @@ import com.pinxue.qianwei.model.ResourcePath;
 import com.pinxue.qianwei.model.User;
 import com.pinxue.qianwei.service.ResourcePathService;
 import com.pinxue.qianwei.service.UserService;
+import com.pinxue.qianwei.viewBuild.ResourcePathView;
+import com.pinxue.qianwei.viewBuild.ResourcePathViewBuild;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +28,9 @@ public class Controller {
 
     @Autowired
     private ResourcePathService resourcePathService;
+
+    @Autowired
+    private ResourcePathViewBuild resourcePathViewBuild;
 
     /**
      * 测试接口
@@ -66,7 +71,8 @@ public class Controller {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     @ResponseStatus(HttpStatus.OK)
-    public String getPath(){
-        return resourcePathService.getPathByTime();
+    public ResourcePathView getPath(){
+        ResourcePath result = resourcePathService.getPathByTime();
+        return resourcePathViewBuild.build(result);
     }
 }

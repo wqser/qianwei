@@ -14,15 +14,15 @@ public class ResourcePathService {
     @Autowired
     private ResourcePathRepository repository;
 
-    public String getPathByTime(){
+    public ResourcePath getPathByTime(){
         Long time = new Date().getTime();
-        String path = "";
+        ResourcePath path =  new ResourcePath();
         List<ResourcePath> rs = repository.findAll();
         for(ResourcePath resourcePath:rs){
             Long startTime = resourcePath.getStartTime();
             Long endTime = resourcePath.getEndTime();
             if(time>=startTime&&time<endTime){
-                path = resourcePath.getPath();
+              path = resourcePath;
             }
         }
         return path;
