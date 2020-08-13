@@ -58,12 +58,12 @@ public class Controller {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
     @ResponseStatus(HttpStatus.CREATED)
-    public User  save(@RequestParam(value = "name") String name,@RequestParam(value="mb")String mb,@RequestParam(value="calorie")int calorie){
-        return userService.save(name,mb,calorie);
+    public User  save(@RequestParam(value = "name") String name,@RequestParam(value="mb")String mb)throws Exception{
+        return userService.save(name,mb);
     }
 
     /**
-     * 测试接口
+     * 获取路径
      * @return
      */
     @GetMapping(
@@ -74,5 +74,21 @@ public class Controller {
     public ResourcePathView getPath(){
         ResourcePath result = resourcePathService.getPathByTime();
         return resourcePathViewBuild.build(result);
+    }
+
+    /**
+     * 提交功能
+     * @param name
+     * @param mb
+     * @return
+     */
+    @PostMapping(
+            value = "/mark",
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE
+    )
+    @ResponseStatus(HttpStatus.CREATED)
+    public User  mark(@RequestParam(value = "name") String name,@RequestParam(value="mb")String mb,@RequestParam(value="calorie")int calorie)throws Exception{
+        return userService.mark(name,mb,calorie);
     }
 }
