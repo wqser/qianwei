@@ -68,7 +68,7 @@ public class Controller {
      */
     @GetMapping(
             value = "/getPath",
-            produces = MediaType.APPLICATION_JSON_VALUE
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
     @ResponseStatus(HttpStatus.OK)
     public ResourcePathView getPath(){

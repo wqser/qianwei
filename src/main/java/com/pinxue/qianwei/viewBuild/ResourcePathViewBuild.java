@@ -12,6 +12,6 @@ public class ResourcePathViewBuild implements ViewBuilder<ResourcePath,ResourceP
         view.setP2(resourcePath.getP2());
         view.setP3(resourcePath.getP3());
         view.setImgSrc(resourcePath.getImgSrc());
-        return null;
+        return view;
     }
 }
