@@ -1,5 +1,6 @@
 package com.pinxue.qianwei.service;
 
+import com.pinxue.qianwei.exception.DuplicateMbException;
 import com.pinxue.qianwei.model.User;
 import com.pinxue.qianwei.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -23,30 +24,30 @@ public class UserService {
      * @param mb
      * @return
      */
-    public User save(String name,String mb) throws Exception{
-//        List<User> users = repository.findByMb(mb);
-//        if(users.size() > 0){
-//            throw new Exception("重复注册！");
-//        }else{
-//            User user = new User();
-//            user.setName(name);
-//            user.setMb(mb);
-//            SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
-//            String dateString = formatter.format(new Date());
-//            user.setTime(dateString);
-//            User result = repository.save(user);
-//            log.info("保存成功");
-//            return result;
-//        }
-        User user = new User();
-        user.setName(name);
-        user.setMb(mb);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
-        String dateString = formatter.format(new Date());
-        user.setTime(dateString);
-        User result = repository.save(user);
-        log.info("保存成功");
-        return result;
+    public User save(String name,String mb) throws DuplicateMbException{
+        List<User> users = repository.findByMb(mb);
+        if(users.size() > 0){
+            throw new DuplicateMbException("此电话已注册！");
+        }else{
+            User user = new User();
+            user.setName(name);
+            user.setMb(mb);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+            String dateString = formatter.format(new Date());
+            user.setTime(dateString);
+            User result = repository.save(user);
+            log.info("保存成功");
+            return result;
+        }
+//        User user = new User();
+//        user.setName(name);
+//        user.setMb(mb);
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+//        String dateString = formatter.format(new Date());
+//        user.setTime(dateString);
+//        User result = repository.save(user);
+//        log.info("保存成功");
+//        return result;
 
     };
 

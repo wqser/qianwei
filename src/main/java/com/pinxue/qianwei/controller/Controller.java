@@ -1,5 +1,6 @@
 package com.pinxue.qianwei.controller;
 
+import com.pinxue.qianwei.exception.DuplicateMbException;
 import com.pinxue.qianwei.model.ResourcePath;
 import com.pinxue.qianwei.model.User;
 import com.pinxue.qianwei.service.ResourcePathService;
@@ -58,7 +59,7 @@ public class Controller {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
     @ResponseStatus(HttpStatus.CREATED)
-    public User  save(@RequestParam(value = "name") String name,@RequestParam(value="mb")String mb)throws Exception{
+    public User  save(@RequestParam(value = "name") String name,@RequestParam(value="mb")String mb)throws DuplicateMbException {
         return userService.save(name,mb);
     }
 
