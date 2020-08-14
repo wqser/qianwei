@@ -89,7 +89,7 @@ public class Controller {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
     @ResponseStatus(HttpStatus.CREATED)
-    public User  mark(@RequestParam(value = "name") String name,@RequestParam(value="mb")String mb,@RequestParam(value="calorie")int calorie)throws Exception{
+    public User  mark(@RequestParam(value = "name") String name,@RequestParam(value="mb")String mb,@RequestParam(value="calorie")double calorie)throws Exception{
         return userService.mark(name,mb,calorie);
     }
 }

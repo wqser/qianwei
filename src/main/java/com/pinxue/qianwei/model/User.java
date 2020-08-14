@@ -26,6 +26,6 @@ public class User {
     private String time;
 
     //卡路里
-    private int calorie;
+    private double calorie;
 
 }

@@ -57,7 +57,7 @@ public class UserService {
      * @param mb
      * @return
      */
-    public User mark (String name,String mb,int calorie)throws Exception{
+    public User mark (String name,String mb,double calorie)throws Exception{
 //        User user = repository.findByNameAndMb(name,mb);
 //        if(user == null){
 //            throw new Exception("该客户未注册");
